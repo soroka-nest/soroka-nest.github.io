@@ -1,6 +1,6 @@
 ---
 icon: fas fa-info-circle
-order: 6
+order: 7
 title: 소개
 ---
 
