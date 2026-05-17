@@ -1,0 +1,43 @@
+---
+# Chirpy 스타일 커스터마이즈 진입점. main 을 먼저 가져온 뒤 규칙 추가.
+---
+
+@import "main";
+
+/* ── 부동산 표: 가독성·디자인 ─────────────────────────────── */
+.content table {
+  font-size: 0.9rem;
+}
+.content table th,
+.content table td {
+  padding: 0.42rem 0.55rem;
+  vertical-align: middle;
+}
+.content table thead th {
+  font-weight: 600;
+}
+
+/* 변동률·가격추세 색상 — 한국 관례: 상승=빨강, 하락=파랑,
+   표본부족=흐림. (compose._delta / _scores_table 의 span 클래스) */
+.content .rise {
+  color: #e23b34;
+  font-weight: 600;
+  white-space: nowrap;
+}
+.content .fall {
+  color: #1f6fe5;
+  font-weight: 600;
+  white-space: nowrap;
+}
+.content .na {
+  color: var(--text-muted-color, #9aa0a6);
+  font-size: 0.86em;
+}
+
+/* 다크 모드에서 가독성 보정 */
+html[data-mode="dark"] .content .rise {
+  color: #ff6b62;
+}
+html[data-mode="dark"] .content .fall {
+  color: #5ea2ff;
+}
