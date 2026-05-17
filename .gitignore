@@ -1,0 +1,11 @@
+# Jekyll build artifacts
+_site/
+.sass-cache/
+.jekyll-cache/
+.jekyll-metadata
+.bundle/
+vendor/
+
+# OS
+.DS_Store
+Thumbs.db
