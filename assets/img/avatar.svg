@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-label="까치집 로고">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#1f3a5f"/>
+      <stop offset="1" stop-color="#2d6cdf"/>
+    </linearGradient>
+  </defs>
+  <rect width="128" height="128" rx="28" fill="url(#bg)"/>
+  <!-- house / nest -->
+  <path d="M64 30 L100 60 H92 V96 H72 V72 H56 V96 H36 V60 H28 Z" fill="#ffffff"/>
+  <!-- magpie tail accent -->
+  <path d="M84 40 q18 6 24 24 q-16 -6 -24 -10 Z" fill="#7fb2ff"/>
+  <!-- data dots -->
+  <circle cx="46" cy="50" r="3.2" fill="#2d6cdf"/>
+  <circle cx="64" cy="44" r="3.2" fill="#2d6cdf"/>
+  <circle cx="82" cy="52" r="3.2" fill="#2d6cdf"/>
+</svg>

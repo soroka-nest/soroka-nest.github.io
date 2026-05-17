@@ -20,6 +20,8 @@ social:
   email: ""
   links: []
 
+avatar: /assets/img/avatar.svg
+
 # light | dark | (empty = follow system + toggle button)
 theme_mode:
 
