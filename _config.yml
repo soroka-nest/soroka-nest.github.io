@@ -65,7 +65,7 @@ defaults:
       layout: post
       comments: true
       toc: true
-      permalink: /posts/:title/
+      permalink: /posts/:year-:month-:day-:title/
   - scope:
       path: _drafts
     values:
