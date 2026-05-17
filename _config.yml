@@ -27,6 +27,19 @@ theme_mode: # light | dark | (empty = follow system + toggle)
 toc: true
 paginate: 8
 
+comments:
+  provider: giscus
+  giscus:
+    repo: soroka-nest/soroka-nest.github.io
+    repo_id: R_kgDOSf3R9Q
+    category: Announcements
+    category_id: DIC_kwDOSf3R9c4C9QGj
+    mapping: pathname
+    strict: "0"
+    input_position: bottom
+    lang: ko
+    reactions_enabled: "1"
+
 # ── chirpy required (theme gems do NOT inherit _config.yml) ──────────────
 kramdown:
   footnote_backlink: "&#8617;&#xfe0e;"
