@@ -12,7 +12,7 @@ tags: [실거래가, 부동산, 매매, 전세, 월세, 재건축]
 _기준일: 2026-05-18 · 자료: 국토교통부 실거래가 공개시스템_
 
 
-안녕하세요, 국토교통부 실거래가 데이터를 분석하는 부동산 블로거입니다. 2026년 5월 18일 기준 강남구의 최신 실거래가 집계 요약을 살펴보겠습니다. 이번 집계에서는 까치마을, 성원대치2단지아파트, 도곡렉슬 등 인기 단지들의 동향과 함께 매매, 전세, 월세 시장에서 다양한 가격 변동을 보인 단지들이 확인되었습니다. 이어지는 본문에서는 이 데이터들을 바탕으로 강남구 부동산 시장의 흐름을 더욱 자세히 분석해보고자 합니다.
+2026년 5월 18일 기준으로 국토교통부 실거래가 자료를 통해 강남구 부동산 시장의 최근 동향을 살펴보았습니다. 매매, 전세, 월세 시장에서 다양한 변화가 관측되었으며, 일부 단지에서는 주목할 만한 등락폭을 기록했습니다. 특히 인기 단지들을 중심으로 활발한 거래가 이루어지는 가운데, 각 거래 유형별로 상이한 흐름이 나타났습니다. 이번 분석에서는 이러한 데이터를 통해 강남구 시장의 면면을 더욱 자세히 들여다보고자 합니다.
 
 ## 인기 단지 (거래량·가격추세)
 
@@ -87,7 +87,7 @@ _비교 기준: 최근 6개월(2025-11-18~2026-05-18) vs 직전 6개월(2025-05-
 | --- | --- | ---: | ---: | ---: |
 | 청담린든그로브 | 청담동 | 1.5(4층) | 7.1(3층) | +361.54% |
 | 개포자이프레지던스 | 개포동 | 1.6(7층) | 4.8(11층) | +201.05% |
-| 진흥아파트 | 청담동 | 1.0(8층) | 2.1(9층) | +110.19% |
+| 진흥아파트 | 삼성동 | 1.0(8층) | 2.1(9층) | +110.19% |
 | 현대6차(78~81,83,84,86,87동) | 압구정동 | 1.3(7층) | 2.4(5층) | +88.62% |
 | 요진와이시티미니 | 역삼동 | 2.9(4층) | 5.1(5층) | +77.73% |
 
@@ -104,7 +104,9 @@ _비교 기준: 최근 6개월(2025-11-18~2026-05-18) vs 직전 6개월(2025-05-
 
 ## 위치
 
-<figure class="osm-map"><iframe title="강남구 지도" loading="lazy" style="width:100%;height:360px;border:0;border-radius:8px" src="https://www.openstreetmap.org/export/embed.html?bbox=127.035377,37.505332,127.059377,37.529332&layer=mapnik&marker=37.517332,127.047377"></iframe><figcaption style="font-size:.85em;color:#888">강남구 위치 · 지도: © OpenStreetMap 기여자 · <a href="https://www.openstreetmap.org/?mlat=37.517332&mlon=127.047377#map=15/37.517332/127.047377" target="_blank" rel="noopener">큰 지도</a></figcaption></figure>
+<figure class="kakao-map"><div id="kkmap_53924" style="width:100%;height:360px;border-radius:8px"></div><figcaption style="font-size:.85em;color:#888">강남구 위치 · 지도: 카카오맵</figcaption></figure>
+<script src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=067881bdd5f88a3bff301c7b3d0da5d7&autoload=false"></script>
+<script>kakao.maps.load(function(){var c=new kakao.maps.LatLng(37.517331925853,127.047377408384);var m=new kakao.maps.Map(document.getElementById("kkmap_53924"),{center:c,level:5});new kakao.maps.Marker({map:m,position:c});m.addControl(new kakao.maps.ZoomControl(),kakao.maps.ControlPosition.RIGHT);});</script>
 
 
 ---
