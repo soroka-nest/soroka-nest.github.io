@@ -34,6 +34,23 @@
   font-size: 0.86em;
 }
 
+/* 금액 아래 보조 정보(거래월·층) — 작고 흐리게 */
+.content table .meta {
+  display: block;
+  margin-top: 1px;
+  color: var(--text-muted-color, #9aa0a6);
+  font-size: 0.78em;
+  font-weight: 400;
+  white-space: nowrap;
+}
+
+/* 홈 페이지네이션(< 1 2 >)을 줄바꿈 없이 한 줄로 */
+.pagination {
+  flex-wrap: nowrap;
+  justify-content: center;
+  white-space: nowrap;
+}
+
 /* 다크 모드에서 가독성 보정 */
 html[data-mode="dark"] .content .rise {
   color: #ff6b62;
