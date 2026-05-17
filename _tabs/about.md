@@ -1,7 +1,7 @@
 ---
-layout: page
+icon: fas fa-info-circle
+order: 4
 title: 소개
-permalink: /about/
 ---
 
 **까치집**은 국토교통부 공개데이터를 매일 자동 분석해 부동산 시세와 사실

@@ -1,29 +1,37 @@
+theme: jekyll-theme-chirpy
+
+lang: ko-KR
+timezone: Asia/Seoul
+
 title: 까치집
 tagline: 데이터로 짓는 집 이야기
 description: >-
   매일 아파트 실거래가·시세 분석, 재건축 사실 데이터, 그리고 둥지의 일상.
-  국토교통부 공개데이터 기반 기술통계 (투자 자문 아님).
+  국토교통부 공개데이터 기반 기술통계입니다 (투자 자문 아님).
+
 url: "https://soroka-nest.github.io"
 baseurl: ""
-lang: ko-KR
-timezone: Asia/Seoul
 
-theme: minima
-minima:
-  date_format: "%Y-%m-%d"
-  skin: classic
+github:
+  username: soroka-nest
 
-plugins:
-  - jekyll-feed
-  - jekyll-seo-tag
-  - jekyll-sitemap
+social:
+  name: 까치집
+  email: ""
+  links: []
 
-header_pages:
-  - about.md
+# light | dark | (empty = follow system + toggle button)
+theme_mode:
 
-# 자동 부동산 초안은 drafts/ 브랜치에만 — 공개 빌드에서 제외(이중 안전장치)
+paginate: 8
+toc: true
+
+# auto RE drafts live on the drafts/ branch only — never built into the
+# public site (defense-in-depth alongside the gitops branch guard).
 exclude:
   - Gemfile
   - Gemfile.lock
   - README.md
   - _drafts
+  - .gitignore
+  - .gitattributes
