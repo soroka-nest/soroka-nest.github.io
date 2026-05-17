@@ -44,11 +44,58 @@
   white-space: nowrap;
 }
 
-/* 홈 페이지네이션(< 1 2 >)을 줄바꿈 없이 한 줄로 */
+/* 홈 페이지네이션(< 1 2 >) — 어떤 경우에도 한 줄·가운데 (chirpy
+   미디어쿼리 규칙을 확실히 덮도록 명시) */
 .pagination {
-  flex-wrap: nowrap;
-  justify-content: center;
+  display: flex !important;
+  flex-direction: row !important;
+  flex-wrap: nowrap !important;
+  justify-content: center !important;
   white-space: nowrap;
+}
+.pagination .page-item {
+  float: none;
+}
+
+/* ── 상단바: [홈 …… 검색] 한 줄, 검색창을 또렷하게 ───────────── */
+#topbar {
+  gap: 0.75rem;
+}
+#topbar #breadcrumb {
+  display: inline-flex !important;   /* 항상 좌측에 '홈/페이지명' */
+  width: auto !important;
+  font-size: 1rem;
+  white-space: nowrap;
+}
+#topbar-title {
+  display: none !important;          /* 가운데 중복 제목 제거(겹침 방지) */
+}
+#search {
+  position: relative;
+  margin-left: auto;                 /* 검색을 우측으로 */
+}
+#search > i.fa-search {
+  position: absolute;
+  left: 0.7rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-muted-color, #9aa0a6);
+  pointer-events: none;
+}
+#search-input {
+  min-width: 12rem;
+  padding: 0.34rem 0.8rem 0.34rem 1.9rem;   /* 좌측 아이콘 공간 */
+  border: 1px solid var(--card-border-color, rgba(128, 128, 128, 0.35));
+  border-radius: 1rem;
+  background-color: var(--card-bg, rgba(128, 128, 128, 0.07));
+}
+#search-input:focus {
+  border-color: var(--link-color, #1f6fe5);
+  box-shadow: 0 0 0 2px rgba(31, 111, 229, 0.15);
+}
+@media all and (max-width: calc(576px - 1px)) {
+  #search-input { min-width: 7.5rem; }
+  #topbar #breadcrumb { font-size: 0.92rem; }
 }
 
 /* 다크 모드에서 가독성 보정 */
