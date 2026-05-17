@@ -1,6 +1,6 @@
 ---
 layout: categories
 icon: fas fa-stream
-order: 2
+order: 4
 title: 카테고리
 ---

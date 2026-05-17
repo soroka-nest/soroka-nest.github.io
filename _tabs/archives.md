@@ -1,6 +1,6 @@
 ---
 layout: archives
 icon: fas fa-archive
-order: 1
+order: 3
 title: 보관함
 ---
