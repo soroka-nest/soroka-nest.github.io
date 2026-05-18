@@ -216,3 +216,33 @@ html[data-mode="dark"] .content .fall {
 html[data-mode="dark"] .content table tbody tr:nth-child(even) { background: rgba(255,255,255,.035); }
 html[data-mode="dark"] .content table tbody tr:hover { background: rgba(94,162,255,.12); }
 html[data-mode="dark"] .content .table-wrapper { box-shadow: 0 1px 6px rgba(0,0,0,.4); }
+
+/* 9) '한눈에 보기' KPI 카드 그리드 (compose._kpi_card 의 .kpi-*) */
+.content .kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 0.7rem;
+  margin: 0.6rem 0 1.4rem;
+}
+.content .kpi-card {
+  display: flex; flex-direction: column; gap: 0.16rem;
+  border: 1px solid var(--card-border-color, rgba(128,128,128,.22));
+  border-radius: 12px;
+  padding: 0.8rem 0.95rem;
+  background: var(--card-bg, rgba(128,128,128,.05));
+}
+.content .kpi-card .kpi-label {
+  font-size: 0.72rem; font-weight: 700; letter-spacing: 0.02em;
+  color: var(--text-muted-color, #9aa0a6);
+}
+.content .kpi-card .kpi-value {
+  font-size: 1.32rem; font-weight: 800; line-height: 1.18;
+}
+.content .kpi-card .kpi-sub {
+  font-size: 0.76rem; color: var(--text-muted-color, #9aa0a6);
+}
+
+/* 10) 모바일: 표 셀 메타(거래월·층) 줄바꿈 허용 — 표 최소폭 고정 완화 */
+@media all and (max-width: 576px) {
+  .content table .meta { white-space: normal; font-size: 0.72em; }
+}
