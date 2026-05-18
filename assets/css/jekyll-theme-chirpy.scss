@@ -105,3 +105,114 @@ html[data-mode="dark"] .content .rise {
 html[data-mode="dark"] .content .fall {
   color: #5ea2ff;
 }
+
+/* ════════════════════════════════════════════════════════════════
+   모던 리디자인 (B10) — 데이터 블로그 가독성·시각 위계 강화.
+   모두 Chirpy CSS 변수를 써 라이트/다크 자동 대응. 순수 CSS(빌드 안전).
+   ════════════════════════════════════════════════════════════════ */
+
+/* 1) 표: 가로 스크롤 래퍼 + 카드형 + 얼룩 + 모바일 축소.
+   Chirpy 는 표를 .table-wrapper 로 감싼다(없어도 .content table 적용). */
+.content .table-wrapper {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  border: 1px solid var(--card-border-color, rgba(128,128,128,.22));
+  border-radius: 12px;
+  margin: 1.1rem 0 1.4rem;
+  box-shadow: 0 1px 4px rgba(0,0,0,.05);
+}
+.content .table-wrapper > table { margin: 0; border: 0; min-width: 100%; }
+.content table { border-collapse: collapse; width: 100%; }
+.content table thead th {
+  background: var(--card-bg, rgba(128,128,128,.08));
+  border-bottom: 2px solid var(--card-border-color, rgba(128,128,128,.3));
+  position: sticky; top: 0;
+}
+.content table tbody tr + tr td { border-top: 1px solid var(--card-border-color, rgba(128,128,128,.14)); }
+.content table tbody tr:nth-child(even) { background: rgba(128,128,128,.045); }
+.content table tbody tr:hover { background: rgba(31,111,229,.07); }
+.content table td:first-child,
+.content table th:first-child { font-weight: 600; }
+@media all and (max-width: 576px) {
+  .content table { font-size: 0.82rem; }
+  .content table th, .content table td { padding: 0.36rem 0.45rem; }
+}
+
+/* 2) 제목 위계 — 섹션마다 또렷한 리듬 + 좌측 액센트 바 */
+.content h2 {
+  margin-top: 2.4rem;
+  padding-bottom: 0.3rem;
+  border-bottom: 2px solid var(--card-border-color, rgba(128,128,128,.25));
+  letter-spacing: -0.01em;
+}
+.content h2::before {
+  content: "";
+  display: inline-block;
+  width: 0.32rem; height: 1.05em;
+  margin-right: 0.5rem;
+  vertical-align: -0.16em;
+  border-radius: 3px;
+  background: var(--link-color, #1f6fe5);
+}
+.content h3 { margin-top: 1.8rem; }
+
+/* 3) blockquote → 콜아웃 카드(면책·환산월세 💡·⚠ 주석·출처 공통) */
+.content blockquote {
+  border-left: 4px solid var(--link-color, #1f6fe5);
+  background: var(--card-bg, rgba(31,111,229,.05));
+  border-radius: 0 10px 10px 0;
+  padding: 0.7rem 1rem;
+  margin: 1rem 0;
+  color: inherit;
+}
+.content blockquote > p { margin: 0.2rem 0; }
+
+/* 4) 용어 <details> — 깔끔한 아코디언 */
+.content details {
+  border: 1px solid var(--card-border-color, rgba(128,128,128,.25));
+  border-radius: 10px;
+  padding: 0.55rem 0.9rem;
+  margin: 1rem 0;
+  background: var(--card-bg, rgba(128,128,128,.05));
+}
+.content details > summary {
+  cursor: pointer;
+  font-weight: 600;
+  list-style: none;
+}
+.content details > summary::-webkit-details-marker { display: none; }
+.content details > summary::after { content: " \25BE"; color: var(--text-muted-color,#9aa0a6); }
+.content details[open] > summary::after { content: " \25B4"; }
+.content details ul { margin: 0.6rem 0 0.2rem; }
+.content details li { margin: 0.25rem 0; }
+
+/* 5) 본문 가독성 — 줄간격·강조·링크 */
+.content { line-height: 1.72; }
+.content p > strong { color: var(--heading-color, inherit); }
+.content a:not(.img-link) {
+  text-underline-offset: 0.18em;
+  text-decoration-thickness: 1px;
+}
+
+/* 6) 홈 글목록 — 카드 호버 입체감 */
+#post-list .card,
+.post-preview, .card-wrapper {
+  transition: transform .15s ease, box-shadow .15s ease;
+}
+#post-list .card:hover,
+.card-wrapper:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(0,0,0,.10);
+}
+
+/* 7) 상단 면책(첫 콜아웃) 살짝 톤다운 — 정보 과부하 완화 */
+.content > blockquote:first-of-type {
+  font-size: 0.92rem;
+  border-left-color: var(--text-muted-color, #9aa0a6);
+  background: rgba(128,128,128,.06);
+}
+
+/* 8) 다크 모드 카드 대비 보정 */
+html[data-mode="dark"] .content table tbody tr:nth-child(even) { background: rgba(255,255,255,.035); }
+html[data-mode="dark"] .content table tbody tr:hover { background: rgba(94,162,255,.12); }
+html[data-mode="dark"] .content .table-wrapper { box-shadow: 0 1px 6px rgba(0,0,0,.4); }
