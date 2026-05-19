@@ -40,6 +40,18 @@ comments:
     lang: ko
     reactions_enabled: "1"
 
+# 방문자 수(관리자 한눈 대시보드) — GoatCounter(무료·개인정보 친화).
+#  사용자: https://www.goatcounter.com 가입 → 사이트 코드 발급 → 아래
+#  goatcounter.id 에 코드 기입(예: soroka-nest). 그러면 글별 조회수가
+#  사이트에 표시되고, 관리자 대시보드는 https://<코드>.goatcounter.com
+#  에서 방문자/유입을 한눈에 확인. id 비우면 아무것도 출력 안 됨(안전).
+#  댓글 관리는 GitHub Discussions(giscus, 위 설정)에서 한눈에 확인.
+analytics:
+  goatcounter:
+    id:                 # ← GoatCounter 코드 기입 시 활성(비우면 미적용)
+pageviews:
+  provider:             # 'goatcounter' 로 설정하면 글별 조회수 노출
+
 # ── chirpy required (theme gems do NOT inherit _config.yml) ──────────────
 kramdown:
   footnote_backlink: "&#8617;&#xfe0e;"
