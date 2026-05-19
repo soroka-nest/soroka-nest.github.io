@@ -240,6 +240,18 @@ async function main() {
     return;
   }
 
+  // 평균(mean_*) 컬럼 존재 여부 — 구버전 parquet 호환(없으면 중위만 노출,
+  // cron 이 새 parquet 을 내보내면 자동으로 평균 토글이 나타남).
+  let hasMean = false;
+  try {
+    const cp = await conn.query(
+      "SELECT * FROM read_parquet('market.parquet') LIMIT 0"
+    );
+    hasMean = (cp.schema?.fields || []).some((f) => f.name === "mean_price");
+  } catch (e) {
+    console.warn("[re-dash] 컬럼 probe 실패", e);
+  }
+
   /* ── 시도 → 시군구 매핑 구성 ───────────────────────────────────────── */
   const sidoMap = new Map(); // sido -> [{region, sgg_cd}]
   for (const r of regionRows) {
@@ -258,7 +270,8 @@ async function main() {
     sgg_cd: sidoMap.get(sidoList[0])[0].sgg_cd,
     trade_type: "매매",
     period: "3y", // '1y' | '3y' | 'all'
-    metric: "median_price", // 'median_price' | 'median_ppm'
+    metric: "price", // 'price' | 'ppm'
+    stat: "median", // 'median' | 'mean'
   };
 
   /* ── UI 골격 ───────────────────────────────────────────────────────── */
@@ -312,8 +325,8 @@ async function main() {
 
   // 지표 토글 세그먼트
   const metricDefs = [
-    { key: "median_price", label: "총액(만원)" },
-    { key: "median_ppm", label: "㎡당(만원)" },
+    { key: "price", label: "총액" },
+    { key: "ppm", label: "㎡당" },
   ];
   const segMetric = el("div", { class: "red-seg", role: "group" });
   const metricBtns = metricDefs.map((m) =>
@@ -325,20 +338,37 @@ async function main() {
   );
   metricBtns.forEach((b) => segMetric.appendChild(b));
 
+  // 통계 토글(중위/평균) — 평균 컬럼이 있을 때만 노출
+  const statDefs = [
+    { key: "median", label: "중위" },
+    { key: "mean", label: "평균" },
+  ];
+  const segStat = el("div", { class: "red-seg", role: "group" });
+  const statBtns = statDefs.map((m) =>
+    el("button", {
+      type: "button",
+      text: m.label,
+      class: m.key === state.stat ? "active" : "",
+    })
+  );
+  statBtns.forEach((b) => segStat.appendChild(b));
+
   const field = (labelText, control) =>
     el("div", { class: "red-field" }, [
       el("label", { text: labelText }),
       control,
     ]);
 
+  const ctrlFields = [
+    field("시도", sidoSel),
+    field("시군구", sggSel),
+    field("거래유형", segTrade),
+    field("기간", periodSel),
+    field("지표", segMetric),
+  ];
+  if (hasMean) ctrlFields.push(field("통계", segStat));
   const controlsCard = el("div", { class: "red-card" }, [
-    el("div", { class: "red-controls" }, [
-      field("시도", sidoSel),
-      field("시군구", sggSel),
-      field("거래유형", segTrade),
-      field("기간", periodSel),
-      field("지표", segMetric),
-    ]),
+    el("div", { class: "red-controls" }, ctrlFields),
   ]);
 
   const priceChartEl = el("div", { class: "red-chart" });
@@ -399,11 +429,13 @@ async function main() {
 
   async function fetchSeries() {
     const months = state.period === "1y" ? 12 : state.period === "3y" ? 36 : null;
+    // 컬럼: median_price | mean_ppm 등. 평균 컬럼이 없으면 항상 중위.
+    const col = (hasMean ? state.stat : "median") + "_" + state.metric;
     // 기간 필터: 데이터의 최대 ym 기준 상대 N개월 (ym 은 'YYYY-MM' 문자열)
     let sql = `
       WITH base AS (
         SELECT ym,
-               CAST(${state.metric} AS DOUBLE) AS metric_val,
+               CAST(${col} AS DOUBLE) AS metric_val,
                CAST(volume AS BIGINT)          AS volume
           FROM read_parquet('market.parquet')
          WHERE sgg_cd = ${sqlStr(state.sgg_cd)}
@@ -459,10 +491,9 @@ async function main() {
     if (token !== renderToken) return; // 더 최신 요청이 있으면 폐기
     priceChart.hideLoading();
 
+    const statKo = hasMean && state.stat === "mean" ? "평균" : "중위";
     const metricLabel =
-      state.metric === "median_price"
-        ? "중위가격(만원)"
-        : "㎡당 중위가격(만원)";
+      state.metric === "ppm" ? `㎡당 ${statKo}가격` : `${statKo}가격`;
     priceTitle.textContent = `${regionLabel()} · ${state.trade_type} · ${metricLabel}`;
 
     if (!rows.length) {
@@ -609,6 +640,13 @@ async function main() {
       metricBtns.forEach((x, j) =>
         x.classList.toggle("active", j === i)
       );
+      render();
+    })
+  );
+  statBtns.forEach((b, i) =>
+    b.addEventListener("click", () => {
+      state.stat = statDefs[i].key;
+      statBtns.forEach((x, j) => x.classList.toggle("active", j === i));
       render();
     })
   );
