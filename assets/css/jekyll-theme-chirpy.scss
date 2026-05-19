@@ -246,3 +246,16 @@ html[data-mode="dark"] .content .table-wrapper { box-shadow: 0 1px 6px rgba(0,0,
 @media all and (max-width: 576px) {
   .content table .meta { white-space: normal; font-size: 0.72em; }
 }
+
+/* 11) 좌측 사이드바 메뉴(홈·부동산 이야기 등) 불릿/점 제거 */
+#sidebar ul,
+#sidebar ol,
+#sidebar li,
+#sidebar .nav,
+#sidebar .nav-item {
+  list-style: none !important;
+  padding-left: 0;
+}
+#sidebar li::marker,
+#sidebar .nav-item::marker { content: ""; }
+#sidebar li::before { content: none !important; }
