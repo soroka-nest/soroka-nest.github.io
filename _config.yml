@@ -48,9 +48,9 @@ comments:
 #  댓글 관리는 GitHub Discussions(giscus, 위 설정)에서 한눈에 확인.
 analytics:
   goatcounter:
-    id:                 # ← GoatCounter 코드 기입 시 활성(비우면 미적용)
+    id: soroka-nest     # https://soroka-nest.goatcounter.com (관리자 대시보드)
 pageviews:
-  provider:             # 'goatcounter' 로 설정하면 글별 조회수 노출
+  provider: goatcounter # 각 글 하단 조회수 표시
 
 # ── chirpy required (theme gems do NOT inherit _config.yml) ──────────────
 kramdown:
