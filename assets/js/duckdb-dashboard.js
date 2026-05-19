@@ -483,6 +483,15 @@ async function main() {
     const gridLine = isDark()
       ? "rgba(255,255,255,.12)"
       : "rgba(0,0,0,.08)";
+    // 축 날짜 라벨이 너무 흐려 보이지 않도록 대비 강화(테마 연동)
+    const labelColor = isDark() ? "#d6dae3" : "#33373d";
+    // 툴팁 가격: 1억 이상은 'xx.x억', 그 미만(㎡당·월세)은 'N,NNN만원'
+    const priceFmt = (v) =>
+      v == null
+        ? "-"
+        : Number(v) >= 10000
+        ? (Number(v) / 10000).toFixed(1) + "억"
+        : Math.round(Number(v)).toLocaleString("ko-KR") + "만원";
 
     priceChart.setOption(
       {
@@ -490,19 +499,21 @@ async function main() {
         grid: { left: 56, right: 18, top: 28, bottom: 40 },
         tooltip: {
           trigger: "axis",
-          valueFormatter: (v) =>
-            v == null ? "-" : Number(v).toLocaleString("ko-KR") + " 만원",
+          valueFormatter: (v) => priceFmt(v),
         },
         xAxis: {
           type: "category",
           data: xs,
-          axisLabel: { hideOverlap: true },
+          axisLabel: {
+            hideOverlap: true, color: labelColor, fontSize: 12,
+            fontWeight: 500,
+          },
           axisLine: { lineStyle: { color: gridLine } },
         },
         yAxis: {
           type: "value",
           scale: true,
-          axisLabel: { formatter: axisFmt },
+          axisLabel: { formatter: axisFmt, color: labelColor },
           splitLine: { lineStyle: { color: gridLine } },
         },
         dataZoom:
@@ -539,13 +550,17 @@ async function main() {
         xAxis: {
           type: "category",
           data: xs,
-          axisLabel: { hideOverlap: true },
+          axisLabel: {
+            hideOverlap: true, color: labelColor, fontSize: 12,
+            fontWeight: 500,
+          },
           axisLine: { lineStyle: { color: gridLine } },
         },
         yAxis: {
           type: "value",
           axisLabel: {
             formatter: (v) => Number(v).toLocaleString("ko-KR"),
+            color: labelColor,
           },
           splitLine: { lineStyle: { color: gridLine } },
         },
