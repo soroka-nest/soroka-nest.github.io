@@ -259,3 +259,11 @@ html[data-mode="dark"] .content .table-wrapper { box-shadow: 0 1px 6px rgba(0,0,
 #sidebar li::marker,
 #sidebar .nav-item::marker { content: ""; }
 #sidebar li::before { content: none !important; }
+
+/* 12) 포스트 매매 변동률 인터랙티브 차트(ECharts) */
+.content figure.mv-chart { margin: 1.2rem 0; }
+.content figure.mv-chart .mv-canvas { width: 100%; min-height: 320px; }
+.content figure.mv-chart figcaption {
+  text-align: center; font-size: 0.8rem;
+  color: var(--text-muted-color, #9aa0a6); margin-top: 0.35rem;
+}
